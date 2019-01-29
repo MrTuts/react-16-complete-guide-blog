@@ -19,14 +19,15 @@ class NewPost extends Component {
       author: this.state.author,
     };
     axios.post('/posts', data).then(response => {
-      this.setState({ submitted: true });
+      this.props.history.replace('/posts');
+      // this.setState({ submitted: true });
     });
   };
 
   render() {
     return (
       <div className="NewPost">
-        {this.state.submitted && <Redirect to="posts/" />}
+        {/*this.state.submitted && <Redirect to="posts/" />*/}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
