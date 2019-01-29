@@ -15,14 +15,15 @@ class Blog extends Component {
             <ul>
               <li>
                 <NavLink
-                  to="/posts"
+                  to="/"
+                  exact //handle active class
                   activeClassName="my-active" // use different class name for active
                   activeStyle={{
                     color: '#da923f',
                     textDecoration: 'underline',
                   }} //inline style for active
                 >
-                  Posts
+                  Home
                 </NavLink>
               </li>
               <li>
@@ -41,10 +42,10 @@ class Blog extends Component {
           </nav>
         </header>
         {/* <Route path="/" exact render={() => <Posts />} /> */}
-        <Route path="/posts" exact component={Posts} />
+        <Route path="/" exact component={Posts} />
         <Switch>
           <Route path="/new-post" component={NewPost} />
-          <Route path="/posts/:id" exact component={FullPost} />
+          <Route path="/:id" exact component={FullPost} />
         </Switch>
       </div>
     );
