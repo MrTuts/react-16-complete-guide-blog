@@ -8,7 +8,7 @@ class FullPost extends Component {
     loadedPost: null,
   };
 
-  componentDidMount(prevProps) {
+  componentDidMount() {
     /* 
       to get query params
       const query = new URLSearchParams(this.props.location.search);
@@ -18,6 +18,14 @@ class FullPost extends Component {
      */
     const id = this.props.match.params.id;
     if (id) {
+      this.setState({ loadedPost: null });
+      this.fetchData(id);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const id = this.props.match.params.id;
+    if (id !== prevProps.match.params.id) {
       this.setState({ loadedPost: null });
       this.fetchData(id);
     }
@@ -33,7 +41,7 @@ class FullPost extends Component {
   }
 
   deletePostHandler = () => {
-    const { id } = this.props;
+    const { id } = this.props.match.params.id;
     axios.delete(`/posts/${id}`).then(response => console.log(response));
   };
 
